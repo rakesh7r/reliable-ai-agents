@@ -1,0 +1,6 @@
+{
+  "id": "tdd-reliability",
+  "title": "TDD Reliability Harness",
+  "description": "Forces every feature through interview → approved tests → a locked red→green loop, so AI-written code matches intent and is never 'done' without a passing test.",
+  "version": "0.1.0"
+}
