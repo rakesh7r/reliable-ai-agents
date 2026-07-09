@@ -28,15 +28,22 @@ describe("loadSkills", () => {
     expect(ids).toEqual([...ids].sort());
   });
 
-  it("loads the real flagship tdd-reliability skill", () => {
+  it("loads the real flagship test-first skill", () => {
     const skills = loadSkills(realSkills);
-    const tdd = skills.find((s) => s.id === "tdd-reliability");
-    expect(tdd).toBeDefined();
-    expect(tdd?.content).toContain("TDD Reliability Harness");
+    const testFirst = skills.find((s) => s.id === "test-first");
+    expect(testFirst).toBeDefined();
+    expect(testFirst?.content).toContain("Test-First");
+  });
+
+  it("loads the plan-first skill", () => {
+    const skills = loadSkills(realSkills);
+    const planFirst = skills.find((s) => s.id === "plan-first");
+    expect(planFirst).toBeDefined();
+    expect(planFirst?.content).toContain("Plan-First");
   });
 
   it("resolves the bundled skills dir with no argument (defaultSkillsDir)", () => {
     const skills = loadSkills();
-    expect(skills.some((s) => s.id === "tdd-reliability")).toBe(true);
+    expect(skills.some((s) => s.id === "test-first")).toBe(true);
   });
 });

@@ -1,12 +1,15 @@
 {
   "name": "reliable-ai-agents",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An extensible repo of reliability skills installable into any AI coding agent.",
   "type": "module",
   "bin": {
     "reliable-ai-agents": "dist/cli.js"
   },
-  "files": ["dist", "skills"],
+  "files": [
+    "dist",
+    "skills"
+  ],
   "engines": {
     "node": ">=18"
   },
@@ -18,7 +21,15 @@
     "lint": "biome check .",
     "format": "biome format --write ."
   },
-  "keywords": ["ai", "agent", "tdd", "reliability", "claude-code", "cursor", "skills"],
+  "keywords": [
+    "ai",
+    "agent",
+    "tdd",
+    "reliability",
+    "claude-code",
+    "cursor",
+    "skills"
+  ],
   "license": "MIT",
   "dependencies": {
     "@clack/prompts": "^0.7.0",

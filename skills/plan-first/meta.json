@@ -1,0 +1,6 @@
+{
+  "id": "plan-first",
+  "title": "Plan-First",
+  "description": "Forces the agent to present a concrete change plan — files, dependencies, structure, blast radius — and get explicit approval before writing code, so the finished diff is never a surprise.",
+  "version": "0.1.0"
+}

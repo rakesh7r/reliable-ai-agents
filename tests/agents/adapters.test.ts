@@ -6,11 +6,11 @@ import { adapters, getAdapter } from "../../src/agents/index.js";
 import type { Skill } from "../../src/skills/types.js";
 
 const skill: Skill = {
-  id: "tdd-reliability",
-  title: "TDD Reliability Harness",
+  id: "test-first",
+  title: "Test-First",
   description: "Test-first reliability.",
   content:
-    "# TDD Reliability Harness\n\nINTERVIEW the user. Get APPROVE for tests.\nLocked RED then GREEN loop.\n⚠ RELIABILITY OVERRIDE marker.",
+    "# Test-First\n\nINTERVIEW the user. Get APPROVE for tests.\nLocked RED then GREEN loop.\n⚠ RELIABILITY OVERRIDE marker.",
 };
 
 const EXPECTED_IDS = [
@@ -63,14 +63,14 @@ describe.each(adapters)("adapter: $id", (adapter) => {
 describe("adapter specifics", () => {
   it("claude writes a namespaced SKILL.md with frontmatter", () => {
     const claude = getAdapter("claude");
-    expect(claude?.outputPath(skill)).toBe(".claude/skills/tdd-reliability/SKILL.md");
+    expect(claude?.outputPath(skill)).toBe(".claude/skills/test-first/SKILL.md");
     expect(claude?.strategy).toBe("overwrite");
     expect(claude?.render(skill)).toMatch(/^---\n[\s\S]*name:[\s\S]*---/);
   });
 
   it("cursor writes an .mdc rule with alwaysApply", () => {
     const cursor = getAdapter("cursor");
-    expect(cursor?.outputPath(skill)).toBe(".cursor/rules/tdd-reliability.mdc");
+    expect(cursor?.outputPath(skill)).toBe(".cursor/rules/test-first.mdc");
     expect(cursor?.render(skill)).toContain("alwaysApply: true");
   });
 
