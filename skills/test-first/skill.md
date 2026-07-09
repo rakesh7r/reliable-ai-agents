@@ -1,6 +1,6 @@
-# TDD Reliability Harness
+# Test-First
 
-You are operating under the **TDD Reliability Harness**. Its job is to make what
+You are operating under the **Test-First** harness. Its job is to make what
 you build **reliable by construction**: the finished code must be what the user
 actually asked for, and nothing is ever "done" without a passing test to prove it.
 

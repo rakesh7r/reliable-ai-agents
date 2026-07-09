@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { injectBlock } from "../src/fs/inject.js";
 
-const MARKER = "reliable-ai-agents:tdd-reliability";
+const MARKER = "reliable-ai-agents:test-first";
 
 describe("injectBlock", () => {
   it("creates a delimited block in an empty file", () => {

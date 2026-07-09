@@ -10,8 +10,8 @@ import { loadSkills } from "../src/skills/registry.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const realSkills = loadSkills(resolve(here, "../skills"));
-const tdd = realSkills.find((s) => s.id === "tdd-reliability");
-if (!tdd) throw new Error("flagship skill missing");
+const testFirst = realSkills.find((s) => s.id === "test-first");
+if (!testFirst) throw new Error("flagship skill missing");
 
 function tempRoot(): string {
   return mkdtempSync(join(tmpdir(), "rae-init-"));
@@ -20,29 +20,29 @@ function tempRoot(): string {
 describe("installSelected", () => {
   it("writes a valid Claude SKILL.md for the flagship skill (criterion 1)", () => {
     const root = tempRoot();
-    const written = installSelected(root, [tdd], [getAdapter("claude")!]);
-    const path = join(root, ".claude/skills/tdd-reliability/SKILL.md");
+    const written = installSelected(root, [testFirst], [getAdapter("claude")!]);
+    const path = join(root, ".claude/skills/test-first/SKILL.md");
     const body = readFileSync(path, "utf8");
-    expect(written).toContain(".claude/skills/tdd-reliability/SKILL.md");
-    expect(body).toMatch(/^---\n[\s\S]*name: tdd-reliability[\s\S]*---/);
-    expect(body).toContain("TDD Reliability Harness");
+    expect(written).toContain(".claude/skills/test-first/SKILL.md");
+    expect(body).toMatch(/^---\n[\s\S]*name: test-first[\s\S]*---/);
+    expect(body).toContain("Test-First");
   });
 
   it("writes each selected agent to its correct path (criterion 2)", () => {
     const root = tempRoot();
-    installSelected(root, [tdd], [getAdapter("claude")!, getAdapter("gemini")!]);
-    expect(() => readFileSync(join(root, ".claude/skills/tdd-reliability/SKILL.md"))).not.toThrow();
+    installSelected(root, [testFirst], [getAdapter("claude")!, getAdapter("gemini")!]);
+    expect(() => readFileSync(join(root, ".claude/skills/test-first/SKILL.md"))).not.toThrow();
     expect(() => readFileSync(join(root, "GEMINI.md"))).not.toThrow();
   });
 
   it("is idempotent across repeated installs (criterion 3)", () => {
     const root = tempRoot();
-    installSelected(root, [tdd], [getAdapter("gemini")!]);
+    installSelected(root, [testFirst], [getAdapter("gemini")!]);
     const first = readFileSync(join(root, "GEMINI.md"), "utf8");
-    installSelected(root, [tdd], [getAdapter("gemini")!]);
+    installSelected(root, [testFirst], [getAdapter("gemini")!]);
     const second = readFileSync(join(root, "GEMINI.md"), "utf8");
     expect(second).toBe(first);
-    const marks = second.split("reliable-ai-agents:tdd-reliability:start").length - 1;
+    const marks = second.split("reliable-ai-agents:test-first:start").length - 1;
     expect(marks).toBe(1);
   });
 
@@ -51,17 +51,17 @@ describe("installSelected", () => {
     const existing =
       "# House rules\n\nBe kind.\n\n<!-- reliable-ai-agents:other:start -->\nOTHER\n<!-- reliable-ai-agents:other:end -->\n";
     writeFileSync(join(root, "AGENTS.md"), existing);
-    installSelected(root, [tdd], [getAdapter("codex")!]);
+    installSelected(root, [testFirst], [getAdapter("codex")!]);
     const body = readFileSync(join(root, "AGENTS.md"), "utf8");
     expect(body).toContain("Be kind.");
     expect(body).toContain("OTHER");
-    expect(body).toContain("TDD Reliability Harness");
+    expect(body).toContain("Test-First");
   });
 
   it("emits the four guarantees in generated output (criterion 5)", () => {
     const root = tempRoot();
-    installSelected(root, [tdd], [getAdapter("cursor")!]);
-    const body = readFileSync(join(root, ".cursor/rules/tdd-reliability.mdc"), "utf8");
+    installSelected(root, [testFirst], [getAdapter("cursor")!]);
+    const body = readFileSync(join(root, ".cursor/rules/test-first.mdc"), "utf8");
     expect(body).toContain("INTERVIEW");
     expect(body).toContain("APPROVE");
     expect(body).toMatch(/RED[\s\S]*GREEN/);
@@ -72,7 +72,7 @@ describe("installSelected", () => {
     const root = tempRoot();
     const written = installSelected(
       root,
-      [tdd],
+      [testFirst],
       [getAdapter("codex")!, getAdapter("opencode")!, getAdapter("antigravity")!],
     );
     expect(written.filter((p) => p === "AGENTS.md")).toHaveLength(1);

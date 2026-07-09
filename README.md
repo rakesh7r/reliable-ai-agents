@@ -17,13 +17,31 @@ format — no manual copy-paste, no wrong paths.
 
 ## Why
 
-Two failure modes kill reliability in AI-assisted work:
+Three failure modes kill reliability in AI-assisted work:
 
 - **Drift** — the agent builds something subtly different from what you meant.
 - **False done** — the agent says "complete" without evidence.
+- **Surprise diff** — you review the result and find surface area you never
+  agreed to: extra files, a new dependency, an unasked-for refactor.
 
-The flagship **TDD Reliability Harness** eliminates both by forcing every feature
-through a fixed loop:
+Two paired skills close these gaps. Each stands alone; run both and there's
+nothing left to surprise you — the approach is agreed up front and the result is
+proven at the end.
+
+### Plan-First — agree *how* before any code changes
+
+```
+SCOPE ──▶ PLAN ──▶ APPROVE ──▶ BUILD ──▶ RECONCILE
+              ▲                      │
+              └──────── (revise) ────┘
+```
+
+Before touching code, the agent shows you the plan — **which files, which
+dependencies, what structure, how big the diff** — and can't start until you
+approve it. Then it builds only what was approved and reconciles the result
+against it (this is what kills the surprise diff).
+
+### Test-First — prove *what* it does before calling it done
 
 ```
 INTERVIEW ──▶ APPROVE ──▶ RED ──▶ GREEN ──▶ DONE
@@ -38,10 +56,10 @@ INTERVIEW ──▶ APPROVE ──▶ RED ──▶ GREEN ──▶ DONE
    test runner, and iterate until green. The agent can't say "done" or move on
    until the test passes (this is what kills false-done).
 
-It's a **firm gate, not a jail**: ask it to skip and it pushes back once, then
-proceeds — but stamps a visible `⚠ RELIABILITY OVERRIDE` so a skip is never
-silent. It's **runner-agnostic** — it drives pytest, jest, vitest, `go test`,
-etc.; it ships none.
+Both are a **firm gate, not a jail**: ask one to skip and it pushes back once,
+then proceeds — but stamps a visible `⚠ PLAN OVERRIDE` / `⚠ RELIABILITY
+OVERRIDE` so a skip is never silent. Test-First is **runner-agnostic** — it
+drives pytest, jest, vitest, `go test`, etc.; it ships none.
 
 ## Supported agents
 
@@ -68,17 +86,18 @@ content and other skills are preserved. Re-running `init` is idempotent.
 npx reliable-ai-agents init
 
 # non-interactive
-npx reliable-ai-agents init --agent claude --skill tdd-reliability
-npx reliable-ai-agents init --agent claude cursor codex --skill tdd-reliability
+npx reliable-ai-agents init --agent claude --skill test-first
+npx reliable-ai-agents init --agent claude cursor codex --skill plan-first test-first
 ```
 
 ## Skills
 
-This is an **extensible repo of skills**. v1 ships one:
+This is an **extensible repo of skills**. v1 ships two:
 
 | Skill | What it does |
 |---|---|
-| `tdd-reliability` | Interview → approved tests → locked red→green loop |
+| `plan-first` | Plan the change (files, deps, structure) → approve → build only that → reconcile |
+| `test-first` | Interview → approved tests → locked red→green loop |
 
 ### Adding a skill
 

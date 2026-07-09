@@ -13,7 +13,7 @@ function escapeRegExp(value: string): string {
  *
  * @param existing  current file contents ("" if the file does not exist)
  * @param content   the block body to inject
- * @param marker    unique marker, e.g. "reliable-ai-agents:tdd-reliability"
+ * @param marker    unique marker, e.g. "reliable-ai-agents:test-first"
  */
 export function injectBlock(existing: string, content: string, marker: string): string {
   const start = `<!-- ${marker}:start -->`;
