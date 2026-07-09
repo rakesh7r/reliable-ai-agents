@@ -1,6 +1,6 @@
 {
   "name": "reliable-ai-agents",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An extensible repo of reliability skills installable into any AI coding agent.",
   "type": "module",
   "bin": {
@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "prepublishOnly": "npm run build && npm test",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
