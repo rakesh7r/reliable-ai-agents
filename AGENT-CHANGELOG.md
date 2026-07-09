@@ -3,6 +3,12 @@
 An append-only, human- and agent-auditable record of every change made to this
 repository by an AI agent. Newest entries first.
 
+## 2026-07-09 — Make changelog entries scale with change size
+
+- **What:** Added guidance to the `changelog` skill so entries stay terse for small
+  changes and only expand for large/complex ones; **What** + title are now the only
+  required fields.
+
 ## 2026-07-09 — Add the `changelog` skill
 
 - **What:** Added a fourth reliability skill, `changelog`, that forces the agent to

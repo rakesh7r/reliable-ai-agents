@@ -47,6 +47,18 @@ Write the summary from the **real** result of the session — the files you actu
 touched and the outcome you actually observed. Do not describe the plan; describe
 what shipped. Be honest about anything unfinished or unverified.
 
+**Size the entry to the change.** The entry is a record, not a report — keep it as
+short as the change allows:
+
+- A **small, simple change** (a one-liner, a copy fix, a rename) gets a **terse**
+  entry — often a single **What** line is enough; drop fields that add nothing.
+- A **large or complex change** (new feature, refactor, migration, anything with
+  non-obvious reasoning or risk) earns **more detail** — spell out the **Why**, the
+  key files, how you verified it, and any follow-ups, so a reader can reconstruct it
+  later without spelunking the diff.
+
+When unsure, err on the shorter side. Never pad an entry to look thorough.
+
 ### 3. RECORD — append the entry to the changelog
 
 The changelog lives at **`AGENT-CHANGELOG.md` in the repository root**, newest entry
@@ -57,18 +69,24 @@ on top. Before writing:
 - If the file does not exist, **create it** with the header shown below, then add
   your entry.
 
-Write one entry per completed unit of work, using this format:
+Write one entry per completed unit of work. **What** and a date-stamped title are
+the only required parts; add the rest **only when the change warrants it** (see
+sizing above) — omit any field that would be empty or obvious.
 
 ```markdown
 ## <YYYY-MM-DD> — <short imperative title>
 
-- **What:** 1–3 sentences on the change, in plain language.
-- **Why:** the request or reason it fulfills.
-- **Files:** the key files created / modified / deleted.
+- **What:** the change in plain language — one line for a small change, a short
+  paragraph for a complex one.
+- **Why:** the request or reason it fulfills. (Skip when self-evident.)
+- **Files:** the key files created / modified / deleted. (Skip for a trivial edit.)
 - **Verified:** how you checked it — tests run and their result, the command, or
   the manual step. If it is **not** verified, say so and why.
 - **Follow-ups:** anything deferred or left open. Omit if none.
 ```
+
+A small change can be as little as a title and a one-line **What**; reserve the
+full field set for changes big enough to need it.
 
 New entries go **directly under the header, above the previous newest entry**. Never
 edit or delete past entries — the log is append-only; correcting an earlier claim
