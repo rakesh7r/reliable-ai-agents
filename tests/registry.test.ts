@@ -49,6 +49,13 @@ describe("loadSkills", () => {
     expect(pipeline?.content).toContain("Pipeline");
   });
 
+  it("loads the changelog skill", () => {
+    const skills = loadSkills(realSkills);
+    const changelog = skills.find((s) => s.id === "changelog");
+    expect(changelog).toBeDefined();
+    expect(changelog?.content).toContain("Changelog");
+  });
+
   it("resolves the bundled skills dir with no argument (defaultSkillsDir)", () => {
     const skills = loadSkills();
     expect(skills.some((s) => s.id === "test-first")).toBe(true);

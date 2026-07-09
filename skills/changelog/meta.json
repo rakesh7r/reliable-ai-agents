@@ -1,0 +1,6 @@
+{
+  "id": "changelog",
+  "title": "Changelog",
+  "description": "Forces the agent to record every code/config change in an append-only AGENT-CHANGELOG.md — what changed, why, which files, how it was verified — before it may declare the work done, so no change ever ships without an auditable trail for humans and the next agent.",
+  "version": "0.1.0"
+}
