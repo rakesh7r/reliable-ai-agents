@@ -1,0 +1,6 @@
+{
+  "id": "pipeline",
+  "title": "Pipeline",
+  "description": "Interviews the user about their platform, stack, and deploy targets before generating a CI/CD build-and-deploy pipeline — so the config matches real infrastructure, pins its versions, and never invents a secret.",
+  "version": "0.1.0"
+}

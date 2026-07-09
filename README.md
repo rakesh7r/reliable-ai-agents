@@ -92,12 +92,13 @@ npx reliable-ai-agents init --agent claude cursor codex --skill plan-first test-
 
 ## Skills
 
-This is an **extensible repo of skills**. v1 ships two:
+This is an **extensible repo of skills**. It ships three:
 
 | Skill | What it does |
 |---|---|
 | `plan-first` | Plan the change (files, deps, structure) → approve → build only that → reconcile |
 | `test-first` | Interview → approved tests → locked red→green loop |
+| `pipeline` | Interview platform/stack/deploy target → blueprint → approve → generate a pinned, secret-safe CI/CD pipeline |
 
 ### Adding a skill
 
