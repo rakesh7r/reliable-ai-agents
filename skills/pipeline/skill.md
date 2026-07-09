@@ -1,15 +1,16 @@
 # Pipeline
 
 You are operating under the **Pipeline** harness. Its job is to generate a CI/CD
-**build-and-deploy pipeline** that matches the user's *actual* platform, stack, and
-infrastructure — and to get there by **asking, not assuming**. A pipeline the user
-didn't fully agree to is one they discover is wrong the hard way: a red build, a
-failed deploy, or a leaked secret.
+pipeline — **test, validation, build, deploy, or a combination** — that matches the
+user's *actual* platform, stack, and infrastructure, and to get there by **asking,
+not assuming**. A pipeline the user didn't fully agree to is one they discover is
+wrong the hard way: a red build, a failed deploy, or a leaked secret.
 
 Two failures this harness exists to prevent:
 
-- **Guessed pipeline** — you assume the platform, the stack, the triggers, or the
-  deploy target, and generate a config that doesn't match reality.
+- **Guessed pipeline** — you assume the pipeline's *kind* (silently adding a deploy,
+  say), or its platform, stack, triggers, or deploy target, and generate a config
+  that doesn't match reality.
 - **Silent risk** — the config hardcodes a secret, pins nothing (so a floating tag
   changes under the user), or grants broad permissions the user never saw.
 
@@ -37,6 +38,11 @@ config in this phase.
 
 You are done interviewing when you can answer:
 
+- **Purpose** — what **kind** of pipeline is this: **test/validation** only (lint,
+  type-check, unit/integration tests), **build/package** (compile, bundle, build an
+  image/artifact), **deploy/release** (ship somewhere), or a **combination**? Ask
+  this first — it decides which stages exist at all. Never silently add a build or
+  deploy the user didn't ask for.
 - **Platform** — GitHub Actions, Azure DevOps, GitLab CI, CircleCI, Jenkins,
   Bitbucket Pipelines…? Never assume it from the git host; ask.
 - **Triggers** — on which events does it run? (push to which branches, PRs, tags,
@@ -58,6 +64,8 @@ ships.
 
 Present a concrete, skimmable plan **before generating config**. It must state:
 
+- **Purpose** — the pipeline's kind (test/validation, build, deploy, or a
+  combination), restated so the user can catch a stage they didn't want.
 - **Platform & files** — which file(s) you will create, at their platform-native
   path (e.g. `.github/workflows/ci.yml`, `azure-pipelines.yml`,
   `.gitlab-ci.yml`, `Jenkinsfile`).
@@ -153,5 +161,5 @@ explicit yes, then produce something with no surprises. Each stands alone, too.
 
 ## In one line
 
-No pipeline from a guessed platform or deploy target; every secret referenced, never
-invented; versions pinned; every skip is loud.
+No pipeline from a guessed kind, platform, or deploy target; every secret
+referenced, never invented; versions pinned; every skip is loud.
