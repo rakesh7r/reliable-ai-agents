@@ -100,7 +100,7 @@ This is an **extensible repo of skills**. It ships five:
 | `test-first` | Interview → approved tests → locked red→green loop |
 | `pipeline` | Interview platform/stack/deploy target → blueprint → approve → generate a pinned, secret-safe CI/CD pipeline |
 | `changelog` | On "done", summarize the change → append it to an auditable `AGENT-CHANGELOG.md` before stopping |
-| `root-cause` | Reproduce the bug → diagnose the real cause → capture a failing test → fix → prove the repro and suite are green |
+| `bugfix` | Reproduce the bug → diagnose the real cause → capture a failing test → fix → prove the repro and suite are green |
 
 ### Adding a skill
 

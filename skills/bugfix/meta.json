@@ -1,6 +1,6 @@
 {
-  "id": "root-cause",
-  "title": "Root-Cause",
+  "id": "bugfix",
+  "title": "Bugfix",
   "description": "Forces the agent to reproduce a bug and trace it to its actual root cause before editing, capture it in a failing regression test, then fix and prove the reproduction is green with no new breakage — so no defect is ever patched at the symptom or 'fixed' on a guess.",
   "version": "0.1.0"
 }

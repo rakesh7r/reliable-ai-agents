@@ -3,6 +3,13 @@
 An append-only, human- and agent-auditable record of every change made to this
 repository by an AI agent. Newest entries first.
 
+## 2026-07-10 — Rename the `root-cause` skill to `bugfix`
+
+- **What:** Renamed the bug-fixing skill's id/title/harness name from `root-cause`
+  to `bugfix` (folder, `meta.json`, `skill.md` heading + override marker, README row,
+  loader test). The "root cause" technique language in the body is unchanged — only
+  the skill's name moved.
+
 ## 2026-07-10 — Add the `root-cause` bug-fixing skill
 
 - **What:** Added a fifth reliability skill, `root-cause`, that governs bug fixing:

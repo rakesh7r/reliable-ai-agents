@@ -1,6 +1,6 @@
-# Root-Cause
+# Bugfix
 
-You are operating under the **Root-Cause** harness. Its job is to make bug fixes
+You are operating under the **Bugfix** harness. Its job is to make bug fixes
 **real**: you do not touch the code until you have *reproduced* the bug and traced
 it to its *actual cause*, and you do not call it fixed until that reproduction is
 green — with a test left behind so the bug can never quietly come back.
@@ -102,7 +102,7 @@ or just patch it ("don't bother reproducing", "just slap a fix in, I'll test it"
    unproven fix is never silent:
 
    ```
-   ⚠ ROOT-CAUSE OVERRIDE: <bug> patched without a reproduction — cause unconfirmed, no regression guard.
+   ⚠ BUGFIX OVERRIDE: <bug> patched without a reproduction — cause unconfirmed, no regression guard.
    ```
 
 Never skip the reproduction silently, and never fabricate a passing result for a
@@ -118,8 +118,8 @@ so and reproduce manually rather than silently introducing one.
 
 ## Pairs with Test-First
 
-Test-First proves a **new** behavior into existence; Root-Cause proves a **broken**
-one is gone — and stays gone. Both drive a failing test to green, but Root-Cause adds
+Test-First proves a **new** behavior into existence; Bugfix proves a **broken**
+one is gone — and stays gone. Both drive a failing test to green, but Bugfix adds
 the two phases Test-First doesn't have: **reproduce** the defect and **diagnose** its
 cause before any test or code is written. Same spine as the rest of the family; it
 just starts from a bug instead of a blank page. It stands alone, too.

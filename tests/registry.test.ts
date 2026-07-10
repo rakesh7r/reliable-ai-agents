@@ -56,11 +56,11 @@ describe("loadSkills", () => {
     expect(changelog?.content).toContain("Changelog");
   });
 
-  it("loads the root-cause skill", () => {
+  it("loads the bugfix skill", () => {
     const skills = loadSkills(realSkills);
-    const rootCause = skills.find((s) => s.id === "root-cause");
-    expect(rootCause).toBeDefined();
-    expect(rootCause?.content).toContain("Root-Cause");
+    const bugfix = skills.find((s) => s.id === "bugfix");
+    expect(bugfix).toBeDefined();
+    expect(bugfix?.content).toContain("Bugfix");
   });
 
   it("resolves the bundled skills dir with no argument (defaultSkillsDir)", () => {
