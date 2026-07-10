@@ -56,6 +56,13 @@ describe("loadSkills", () => {
     expect(changelog?.content).toContain("Changelog");
   });
 
+  it("loads the root-cause skill", () => {
+    const skills = loadSkills(realSkills);
+    const rootCause = skills.find((s) => s.id === "root-cause");
+    expect(rootCause).toBeDefined();
+    expect(rootCause?.content).toContain("Root-Cause");
+  });
+
   it("resolves the bundled skills dir with no argument (defaultSkillsDir)", () => {
     const skills = loadSkills();
     expect(skills.some((s) => s.id === "test-first")).toBe(true);
